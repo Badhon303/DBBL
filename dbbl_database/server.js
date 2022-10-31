@@ -101,5 +101,5 @@ app.post("/certificate", jsonParser, async function (req, res) {
 })
 
 app.listen(4000, function () {
-  console.log(`DBBL Bank database is running on http://localhost:4000`)
+  console.log(`DBBL Bank database is running on http://115.127.24.188:4000`)
 })

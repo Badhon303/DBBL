@@ -476,8 +476,8 @@
 
     <script>
         $(document).ready(function () {
-            var backendURL = 'http://localhost:3000'
-            const dbblURL = 'http://localhost:4000'
+            var backendURL = 'http://115.127.24.188:3000'
+            const dbblURL = 'http://115.127.24.188:4000'
             var transactionHash = ""
             var bPdf
             var qrImg
@@ -1007,7 +1007,7 @@
 
                 var baddress = tx
 
-                var url = "http://localhost:5000/verify.html?txhash=" + transactionHash
+                var url = "http://115.127.24.188:5000/verify.html?txhash=" + transactionHash
                 var qrcode = new QRCode(document.getElementById("qrImage"), {
                     text: url,
                     width: 120,

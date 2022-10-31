@@ -411,7 +411,7 @@
                 var customerIdNo
 
                 var ajax = $.ajax({
-                    url: `http://localhost:3000/v1/dbbl/verify/${txHash}`,
+                    url: `http://115.127.24.188:3000/v1/dbbl/verify/${txHash}`,
                     method: 'GET',
                     dataType: 'json',
                     success: function (response) {
@@ -437,7 +437,7 @@
                         var nationalIdNumber
                         var passportNumber
                         $.ajax({
-                            url: `http://localhost:4000/certificate/${response.customerId}`,
+                            url: `http://115.127.24.188:4000/certificate/${response.customerId}`,
                             type: 'GET',
                             cache: false,
                             dataType: 'json',
@@ -493,7 +493,7 @@
                 $("#verifyButton").click(function () {
 
                     $.ajax({
-                        url: `http://localhost:3000/v1/dbbl/verify/${txHash}`,
+                        url: `http://115.127.24.188:3000/v1/dbbl/verify/${txHash}`,
                         type: 'GET',
                         cache: false,
                         dataType: 'json',
@@ -501,7 +501,7 @@
                             var blokchainQueryResult = blockchainResponse.data.txHash
                             // console.log("blokchainQueryResult: ", blokchainQueryResult)
                             $.ajax({
-                                url: `http://localhost:3000/v1/dbbl/customer/${customerIdNo}`,
+                                url: `http://115.127.24.188:3000/v1/dbbl/customer/${customerIdNo}`,
                                 type: 'GET',
                                 cache: false,
                                 dataType: 'json',
