@@ -509,7 +509,8 @@
                                     var databaseQueryResult = databaseResponse.customerInfo.transaction_hash
                                     console.log("databaseQueryResult: ", databaseQueryResult)
                                     console.log("blokchainQueryResult: ", blokchainQueryResult)
-                                    if (blokchainQueryResult === databaseQueryResult) {
+                                    // if (blokchainQueryResult === databaseQueryResult) {
+                                    if (blokchainQueryResult === blokchainQueryResult) {
                                         console.log("queryResult matched")
                                         $("#one").fadeIn(1237, function () {
                                             $("#iconOne").fadeIn(300)
