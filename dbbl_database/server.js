@@ -3,10 +3,29 @@ const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 
-mongoose.connect("mongodb://localhost:27017/dbblBankDatabase", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+// mongoose.connect("mongodb://localhost:27017/dbblBankDatabase", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(
+      "mongodb+srv://Alam:asdfgh11@cluster0.z3hy9m6.mongodb.net/dbblBankDatabase?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+      }
+    )
+    console.log("mongoDB connected: ", conn.connection.host)
+  } catch (error) {
+    console.log("mongoError: ", error.message)
+    process.exit(1)
+  }
+}
+
+connectDB()
 
 const dbblSchema = mongoose.Schema(
   {
