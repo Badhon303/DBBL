@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leadschain</title>
+    <link href="http://localhost:5000/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:5000/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:5000/css/datepicker3.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:5000/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:5000/forntend/css/style.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:5000/css/jquery-ui.css" rel="stylesheet" type="text/css">
+
+    <!--Custom Font-->
+    <link rel="stylesheet" type="text/css" href="http://localhost:5000/forntend/css/mobirise.css" />
+    <link rel="stylesheet" href="http://localhost:5000/forntend/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:5000/forntend/css/materialdesignicons.min.css" />
+    <style>
+        .tableFont {
+            font-size: 15px;
+        }
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        #customers td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            padding-left: 17%;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+            padding-left: 8%;
+        }
+
+        #customers td:nth-child(odd) {
+            font-weight: bold;
+            padding-left: 10%;
+        }
+
+        #customers td:nth-child(even) {
+            font-size: 10px;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span></button>
+                <a class="navbar-brand" href="#"><span>LEADS Chain</span></a>
+
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!--/.sidebar-->
+
+    <div class="col-12">
+        <div class="col-12">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="panel-heading"><img src="http://localhost:5000/img/dbbl_baner.png"
+                            class="img-responsive" style="position:absolute;top:100px;left: 50%;
+                        transform: translateX(-50%) translateY(-50%);white-space:nowrap" />
+                        <div class="panel panel-default">
+
+                            <div class="panel-body">
+                                <div class="row">
+
+
+                                    <!--<div class="col-8">
+										<h6 style="text-align: right" id="datetimetxt">
+										</h6>
+										<h6 style="text-align: left">101:Local Office
+											1, Dilkusha Commercial Area, Dhaka-1000,Bangladesh</h6>
+										<h6 style="text-align: left">DBBL Swift Code: DBBL BDDH</h6>
+										<h6 style="text-align: left">DBBL Call Center: 16216 (24 Hours)</h6>
+									</div>
+									<div class="col-4">
+										<div id="qrCode" style="height:160px; width:160px;" class="pull-right"></div>
+									</div>-->
+
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <h2 style="text-align:center;font-weight: 600;color:black;"><u><b>Verify
+                                                Page</b></u></h2>
+
+                                </div>
+
+                                <br>
+                                <div class="col-12">
+                                    <br>
+                                    <br>
+                                    <h3 style="margin-top: 2%;color: black;font-weight: 400" class="text-center">
+                                        <b>Customer Information</b>
+                                    </h3>
+
+                                </div>
+                                <br>
+
+                                <div class="col-12">
+                                    <table class="table-responsive"
+                                        style="table-layout: fixed; overflow-x: hidden; margin: 0 auto;color:black; border: 1px solid black;"
+                                        id="customers">
+                                        <tbody>
+                                            <tr hidden>
+
+                                                <td style="width: 30%;font-size:initial;color: black;">Customer No</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 65%"><span id="customerIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 45%;font-size:initial;color: black;">Full Name</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 55%"><span id="fullNameIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Father's Name</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="father"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Mother's Name</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="mother"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Village/ House
+                                                </td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="houseNo"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Post Office</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="poNo"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Police Station
+                                                </td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="psNo"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">District</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="dst"></span></td>
+                                            </tr>
+                                            <tr hidden>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Phone</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="phoneIDTd"></span></td>
+                                            </tr>
+                                            <tr hidden>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Email</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="emailIDTd"></span></td>
+                                            </tr>
+                                            <tr hidden>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Tin No</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="tinNoIDTd"></span></td>
+                                            </tr>
+                                            <tr hidden>
+
+                                                <td style="width: 25%;font-size:initial;color: black">National Id No
+                                                </td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="nationalIDNoTd"></span></td>
+                                            </tr>
+                                            <tr hidden>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Passport No</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="PassNolabel"></span></td>
+                                            </tr>
+                                            <tr hidden>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Passport No</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="PassNolabel2"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">A/C No</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="accNolabel"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">A/C Title</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="accTitlelabel"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">A/C Type</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="accTypelabel"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">A/C OpenDate</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="accOpendatelabel"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Currency</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="currencylabel"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Balance</td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="Balancelabel"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Balance In Word
+                                                </td>
+                                                <!-- <td>:</td> -->
+                                                <td style="width: 70%"><span id="balanceWordlabel"></span></td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="text-center" style="margin-top: 40px;">
+                                    <div><button type="button" class="btn btn-primary" id="verifyButton">Verify</button>
+                                    </div>
+                                    <br /><br />
+                                    <div id="verifyIconSuccess">
+                                        <h3 class="mdi mdi-verified" style="color: darkgreen;">Verified</h3>
+                                    </div>
+                                    <div id="verifyIconFail">
+                                        <h3 class="mdi mdi-close-circle-outline text-danger">Not Verified</h3>
+                                    </div>
+                                    <br /><br />
+                                    <div id="one">
+                                        <p>Computing Hash Code of local certificate. <i id="iconOne"
+                                                class="mdi mdi-check-circle-outline"></i></p>
+                                    </div>
+                                    <div id="two">
+                                        <p>Fetching hash in OP_RETURN field form ethereum Blockchain. <i id="iconTwo"
+                                                class="mdi mdi-check-circle-outline"></i></p>
+                                    </div>
+                                    <div id="three">
+                                        <p>Comparing local and blockchain hashes. <i id="iconThree"
+                                                class="mdi mdi-check-circle-outline"></i></p>
+                                    </div>
+                                    <div id="four">
+                                        <p>Checking LEADS<i class="mdi mdi-link-variant"></i>chain signature. <i
+                                                id="iconFour" class="mdi mdi-check-circle-outline"></i></p>
+                                    </div>
+                                    <div id="five">
+                                        <p>Checking not revoked by issuer. <i id="iconFive"
+                                                class="mdi mdi-check-circle-outline"></i></p>
+                                    </div>
+                                    <div id="six">
+                                        <h3 style="color: darkgreen;">Success! The certificate has been verified. <i
+                                                id="iconSix" class="mdi mdi-check-circle-outline"></i></p>
+                                    </div>
+                                    <div>
+                                        <p style="overflow: auto">Blockchain Address:
+                                            <a href="" id="blockAddress"></a>
+                                        </p>
+                                    </div>
+                                    <ul id="ulEmployee">
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <!-- /.panel-->
+                        </div>
+                    </div>
+                </div>
+                <!--/.row-->
+
+
+
+
+
+
+
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.main-->
+
+        <!--<script src="js/jquery-1.11.1.min.js"></script>-->
+        <script src="http://localhost:5000/js/jquery-3.2.1.min.js"></script>
+        <script src="http://localhost:5000/js/jquery-ui.js"></script>
+
+        <script src="http://localhost:5000/js/bootstrap.min.js"></script>
+        <script src="http://localhost:5000/js/chart.min.js"></script>
+        <script src="http://localhost:5000/js/chart-data.js"></script>
+        <script src="http://localhost:5000/js/easypiechart.js"></script>
+        <script src="http://localhost:5000/js/easypiechart-data.js"></script>
+        <script src="http://localhost:5000/js/bootstrap-datepicker.js"></script>
+        <script src="http://localhost:5000/js/custom.js"></script>
+        <script src="http://localhost:5000/js/style.js"></script>
+        <!-- <script src="./js/app.js"></script> -->
+        <script src="http://localhost:5000/js/qrcode.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#verifyIconSuccess").hide()
+                $("#verifyIconFail").hide()
+                $("#one").hide()
+                $("#two").hide()
+                $("#three").hide()
+                $("#four").hide()
+                $("#five").hide()
+                $("#six").hide()
+                $("#iconOne").hide()
+                $("#iconTwo").hide()
+                $("#iconThree").hide()
+                $("#iconFour").hide()
+                $("#iconFive").hide()
+                $("#iconSix").hide()
+                $("#verifyIconFail").hide()
+
+                // document.getElementById('verifyIconSuccess').style.display = 'none';
+                // document.getElementById('verifyIconFail').style.display = 'none';
+                // document.getElementById('one').style.display = 'none';
+                // document.getElementById('two').style.display = 'none';
+                // document.getElementById('three').style.display = 'none';
+                // document.getElementById('four').style.display = 'none';
+                // document.getElementById('five').style.display = 'none';
+                // document.getElementById('six').style.display = 'none';
+                // document.getElementById('iconOne').style.display = 'none';
+                // document.getElementById('iconTwo').style.display = 'none';
+                // document.getElementById('iconThree').style.display = 'none';
+                // document.getElementById('iconFour').style.display = 'none';
+                // document.getElementById('iconFive').style.display = 'none';
+                // document.getElementById('iconSix').style.display = 'none';
+                // document.getElementById('verifyIconFail').style.display = 'none';
+
+                // $("#verifyIconSuccess").css('display', 'none');
+                // $("#verifyIconFail").css('display', 'none');
+                // $("#one").css('display', 'none');
+                // $("#two").css('display', 'none');
+                // $("#three").css('display', 'none');
+                // $("#four").css('display', 'none');
+                // $("#five").css('display', 'none');
+                // $("#six").css('display', 'none');
+                // $("#iconOne").css('display', 'none');
+                // $("#iconTwo").css('display', 'none');
+                // $("#iconThree").css('display', 'none');
+                // $("#iconFour").css('display', 'none');
+                // $("#iconFive").css('display', 'none');
+                // $("#iconSix").css('display', 'none');
+                // $("#verifyIconFail").css('display', 'none');
+
+
+
+                var getUrlParameter = function getUrlParameter(sParam) {
+                    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                        sURLVariables = sPageURL.split('?'),
+                        sParameterName,
+                        i
+
+                    for (i = 0; i < sURLVariables.length; i++) {
+                        sParameterName = sURLVariables[i].split('=')
+
+                        if (sParameterName[0] === sParam) {
+                            return sParameterName[1] === undefined ? true : sParameterName[1]
+                        }
+                    }
+                }
+
+                var txHash = getUrlParameter('txhash')
+                // console.log(txHash)
+
+
+                var customerIdNo
+
+                var ajax = $.ajax({
+                    url: `http://localhost:3000/v1/dbbl/verify/${txHash}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        // console.log(response.data.certificateData.accountOpenDate)
+                        response = response.data.certificateData
+                        customerIdNo = response.customerId
+                        console.log("customerIdNo: ", customerIdNo)
+                        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+                        function convertDate(date_str) {
+                            temp_date = date_str.split("-")
+                            return months[Number(temp_date[1]) - 1] + " " + temp_date[0] + ", " + temp_date[2]
+                        }
+
+                        var openDate = convertDate(response.accountOpenDate)
+
+                        $("#accOpenDate").html(openDate).css({
+                            fontSize: 20
+                        })
+
+                        var phoneNumber
+                        var tinNumber
+                        var nationalIdNumber
+                        var passportNumber
+                        $.ajax({
+                            url: `http://localhost:4000/certificate/${response.customerId}`,
+                            type: 'GET',
+                            cache: false,
+                            dataType: 'json',
+                            success: function (res) {
+                                res = res.customerInfo
+
+                                phoneNumber = res.phoneNumber
+                                tinNumber = res.tinNumber
+                                nationalIdNumber = res.nationalIdNumber
+                                passportNumber = res.passportNumber
+
+                            },
+                            error: function (err) {
+                                console.log(err)
+                            }
+                        })
+
+
+                        document.getElementById("customerIDTd").innerHTML = response.customerId
+                        document.getElementById("fullNameIDTd").innerHTML = response.fullName
+                        document.getElementById("emailIDTd").innerHTML = response.emailAddress
+                        document.getElementById("phoneIDTd").innerHTML = phoneNumber
+                        document.getElementById("tinNoIDTd").innerHTML = tinNumber
+                        document.getElementById("nationalIDNoTd").innerHTML = nationalIdNumber
+                        document.getElementById("PassNolabel").innerHTML = passportNumber
+                        document.getElementById("accNolabel").innerHTML = response.accountNumber
+                        document.getElementById("accTitlelabel").innerHTML = response.accountTitle
+                        document.getElementById("accTypelabel").innerHTML = response.accountType
+                        document.getElementById("accOpendatelabel").innerHTML = openDate
+                        document.getElementById("currencylabel").innerHTML = response.currency
+                        document.getElementById("Balancelabel").innerHTML = response.balance
+                        document.getElementById("balanceWordlabel").innerHTML = response.balanceInWord + " Only"
+                        document.getElementById("father").innerHTML = response.fatherName
+                        document.getElementById("mother").innerHTML = response.motherName
+                        document.getElementById("houseNo").innerHTML = response.villageOrHouse
+                        document.getElementById("poNo").innerHTML = response.postOffice
+                        document.getElementById("psNo").innerHTML = response.policeStation
+                        document.getElementById("dst").innerHTML = response.district
+
+                    },
+                    error: function (response) {
+                        // console.log(response);
+                        alert("There is Something Wrong")
+                    }
+                })
+
+
+                $("#blockAddress").attr('href', 'http://115.127.24.185:25000/tx/' + txHash)
+                $("#blockAddress").text(txHash)
+                // console.log(txHash)
+
+
+                $("#verifyButton").click(function () {
+
+                    $.ajax({
+                        url: `http://localhost:3000/v1/dbbl/verify/${txHash}`,
+                        type: 'GET',
+                        cache: false,
+                        dataType: 'json',
+                        success: function (blockchainResponse) {
+                            var blokchainQueryResult = blockchainResponse.data.txHash
+                            // console.log("blokchainQueryResult: ", blokchainQueryResult)
+                            $.ajax({
+                                url: `http://localhost:3000/v1/dbbl/customer/${customerIdNo}`,
+                                type: 'GET',
+                                cache: false,
+                                dataType: 'json',
+                                success: function (databaseResponse) {
+                                    var databaseQueryResult = databaseResponse.customerInfo.transaction_hash
+                                    console.log("databaseQueryResult: ", databaseQueryResult)
+                                    console.log("blokchainQueryResult: ", blokchainQueryResult)
+                                    if (blokchainQueryResult === databaseQueryResult) {
+                                        console.log("queryResult matched")
+                                        $("#one").fadeIn(1237, function () {
+                                            $("#iconOne").fadeIn(300)
+                                            $("#two").fadeIn(1152, function () {
+                                                $("#iconTwo").fadeIn(350)
+                                                $("#three").fadeIn(1346, function () {
+                                                    $("#iconThree").fadeIn(323)
+                                                    $("#four").fadeIn(1390,
+                                                        function () {
+                                                            $("#iconFour").fadeIn(
+                                                                312)
+                                                            $("#five").fadeIn(
+                                                                1058,
+                                                                function () {
+                                                                    $(
+                                                                        "#iconFive"
+                                                                    )
+                                                                        .fadeIn(
+                                                                            320
+                                                                        )
+                                                                    $(
+                                                                        "#six"
+                                                                    )
+                                                                        .fadeIn(
+                                                                            1817,
+                                                                            function () {
+                                                                                $
+                                                                                    (
+                                                                                        "#iconSix"
+                                                                                    )
+                                                                                    .fadeIn(
+                                                                                        300
+                                                                                    )
+                                                                                $
+                                                                                    (
+                                                                                        "#verifyIconSuccess"
+                                                                                    )
+                                                                                    .show()
+                                                                            }
+                                                                        )
+                                                                })
+                                                        })
+                                                })
+                                            })
+
+                                        })
+                                    } else {
+                                        $("#verifyIconFail").show()
+
+                                    }
+
+                                },
+                                error: function (err) {
+                                    alert('This statement does not exist on Leads Chain Database')
+                                }
+                            })
+                        },
+                        error: function (err) {
+                            alert('This statement does not exist on blockchain')
+                        }
+                    })
+
+                })
+            });
+        </script>
+
+</body>
+
+</html>

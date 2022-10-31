@@ -1,0 +1,287 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "certificate_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "date",
+        "type": "uint256"
+      }
+    ],
+    "name": "CertificatePublished",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "certificateId",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "customerId",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "emailAddress",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "fullName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "fatherName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "motherName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "villageOrHouse",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "postOffice",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "policeStation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accountNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accountTitle",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accountType",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accountOpenDate",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "currency",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "balance",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "balanceInWord",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct Dbbl.Certificate_payload",
+        "name": "certificatePayload",
+        "type": "tuple"
+      }
+    ],
+    "name": "publishCertificate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "certificateId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getCertificateDetailsById",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "customerId",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "emailAddress",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "fullName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "fatherName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "motherName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "villageOrHouse",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "postOffice",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "policeStation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "district",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accountNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accountTitle",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accountType",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "accountOpenDate",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "currency",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "balance",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "balanceInWord",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct Dbbl.Certificate_payload",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "certificateId",
+        "type": "uint256"
+      }
+    ],
+    "name": "isCertificateVerified",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "getPublishedCertificateIds",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "getTotalPublishedCerticates",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  }
+]

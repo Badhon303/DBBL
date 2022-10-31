@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leads BankChain</title>
+    <link href="http://localhost:5000/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:5000/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:5000/css/datepicker3.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost:5000/css/styles.css" rel="stylesheet" type="text/css">
+
+
+    <link href="http://localhost:5000/css/jquery-ui.css" rel="stylesheet" type="text/css">
+
+    <link href="http://localhost:5000/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--Custom Font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet" type="text/css">
+
+
+    <style>
+        .tableFont {
+            font-size: 10px;
+        }
+
+        button {
+            position: relative;
+            bottom: 5%;
+            left: 0%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><span>LEADS</span>chain</a>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-3 sidebar">
+        <div class="profile-sidebar">
+            <img src="http://localhost:5000/img/1200px-DBBL.jpg" class="img-responsive" alt="">
+            <div class="clear"></div>
+        </div>
+        <div class="divider"></div>
+        <form role="search">
+            <div class="form-group">
+
+                <label for="customerNumberLabel">Customer Number</label>
+                <input type="text" id="customerNumberTextbox" class="form-control" placeholder="Customer No.">
+                <br />
+                <label for="customerNumberLabel">Email</label>
+                <input type="text" id="EmailTextbox" class="form-control" placeholder="Email address">
+                <br />
+
+                <div class="form-group">
+                    <label for="issuerSign">Issuer Signature</label>
+                    <input id="issuerSign" name="issuerSign" class="filestyle" accept=".png"
+                        data-buttonname="btn-secondary" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);"
+                        tabindex="-1" type="file" required
+                        data-parsley-required-message="Please upload Issuer Signeture & file formate must be png.">
+                </div>
+
+                <div class="form-group">
+                    <button type="button" id="showAccountbtn" class="btn btn-primary" style="visibility:visible">Show
+                        Account</button>
+                    <button type="button" id="CreateCon" class="btn btn-primary"
+                        style="visibility:visible;position: relative">Create</button>
+                    <button type="button" id="createPdfbtn" class="btn btn-primary"
+                        style="visibility:visible;position: relative">Create PDF</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <!--/.sidebar-->
+    <div class="modal fade" id="MailModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">LEADS BankChain</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="color: green">Mail Send Successfully</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="#MailModalError" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">LEADS BankChain</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="color: red">Somthing wrong !!!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="txhashModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        data-keyboard="false" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="regModalLabel">LEADS BankChain</h5>
+                    <button id="xButton" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center">
+
+                            <div id="pBarDiv" class="progress m-b-15">
+                                <div id="progressBar"
+                                    class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                    role="progressbar" style="width: 2%" aria-valuenow="0" aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                            </div>
+                            <div id="one">
+                                <p>Network Id Detected.
+                                    <i id="iconOne" class="mdi mdi-check-circle-outline"></i>
+                                </p>
+                            </div>
+                            <div id="two">
+                                <p>Network Id Verified.
+                                    <i id="iconTwo" class="mdi mdi-check-circle-outline"></i>
+                                </p>
+                            </div>
+                            <div id="three">
+                                <p>Coinbase Adddress Detected.
+                                    <i id="iconThree" class="mdi mdi-check-circle-outline"></i>
+                                </p>
+                            </div>
+                            <div id="four">
+                                <p>Coinbase Address Verified.
+                                    <i id="iconFour" class="mdi mdi-check-circle-outline"></i>
+                                </p>
+                            </div>
+                            <div id="five">
+                                <p>Gas/Nonce/Value/GasPrice Detected And Verified
+                                    <i id="iconFive" class="mdi mdi-check-circle-outline"></i>
+                                </p>
+                            </div>
+                            <div id="six">
+                                <h3 id="successMsg" class="text-success">Success!!! Created Transaction Hash.
+                                    <i id="iconSix" class="mdi mdi-check-circle-outline"></i>
+                                    </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="regModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        data-keyboard="false" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="regModalLabel">LEADS BankChain</h5>
+                    <button id="xButton" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <h2 id="modalHead">Bank Statment Issued Successfully</h2>
+                    <p id="modalText">Please Click Send button to send mail to the Customer, with blockchain certified
+                        Bank Statment.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-indigo waves-effect waves-light"
+                        id="pdfBtn">Send</button>
+                    <button id="closeButton" type="button" class="btn btn-secondary waves-effect"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="regModalError" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        data-keyboard="false" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="">LEADS BankChain</h5>
+                    <button id="xErrorButton" type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-danger">Something Went Wrong</h2>
+                    <p id="errorText" class="text-danger"></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="closeErrorButton" type="button" class="btn btn-secondary waves-effect"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+            <div class="row">
+                <div class="col-lg-12" id='pdfDiv'>
+                    <div class="panel-heading"><img src="http://localhost:5000/img/dbbl_baner.png"
+                            class="img-responsive" style="position:absolute;top:50px;left: 50%;
+                        transform: translateX(-50%) translateY(-50%);white-space:nowrap" />
+
+                        <div class="panel panel-default">
+
+                            <div class="panel-body h-100">
+                                <div class="row">
+                                    <h6 style="text-align: right; margin-right: 15%" id="datetimetxt" hidden></h6>
+
+                                    <table class="table-responsive" style="width: 100%;">
+                                        <thead> </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-md-10">
+                                                    <div class="col-8;margin-left:3%">
+                                                        <br><br><br>
+                                                        <h6 id="localOfficeCode"
+                                                            style="font-size: 15px;font-family:Arial, Helvetica, sans-serif;">
+                                                            <b>DBBL/101/2022</b><br />
+                                                        </h6>
+                                                        <h6 id="todayDate"
+                                                            style="font-size: 15px;font-family:Arial, Helvetica, sans-serif;">
+                                                        </h6>
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-right col-md-2" style="width: 30%">
+                                                    <div id="qrImage" style="height:120px; width:120px;"></div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--<div class="col-8">
+										
+										</h6>
+										<h6 style="text-align: left">101:Local Office
+											1, Dilkusha Commercial Area, Dhaka-1000,Bangladesh</h6>
+										<h6 style="text-align: left">DBBL Swift Code: DBBL BDDH</h6>
+										<h6 style="text-align: left">DBBL Call Center: 16216 (24 Hours)</h6>
+									</div>
+									<div class="col-4">
+										<div id="qrCode" style="height:160px; width:160px;" class="pull-right"></div>
+									</div>-->
+
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 style="text-align:center;font-weight: bold;font-family:Arial, Helvetica, sans-serif;"
+                                        id='accountBalanceStatment'><u>To Whom It May Concern </u></h3>
+                                    <hr style="border: 1px solid #000;width: 100%;margin: auto;" id="line" hidden>
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <h4 style="margin-top: 2%;color: black;font-weight: 400" id='customerInfoLabel'
+                                        hidden>Customer Information:</h4>
+
+                                </div>
+                                <div class="col-md-12" id='infoTable'>
+                                    <table id="BasicTable" class="table table-responsive"
+                                        style="table-layout: fixed;word-wrap: break-word; margin-left: 5%" hidden>
+                                        <thead hidden>
+                                            <tr hidden>
+                                                <th hidden></th>
+                                                <th hidden></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody hidden>
+                                            <tr hidden>
+
+                                                <td style="width: 25%;font-size:initial;color: black;border: 1px;">
+                                                    <span id="customerNolab" hiden></span> CustomerNo
+                                                </td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="customerIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black"><span
+                                                        id="fullName"></span>Full Name</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="fullNameIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Father Name</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="fatherNameIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Mother Name</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="motherNameIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Spouse Name</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="spouseNameIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Parmanent Address
+                                                </td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="parmanentAddressIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Present Address
+                                                </td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="presentAddressIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Profession</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="professionIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Date of Birth</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="dobIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Phone</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="phoneIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Email</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="emailIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Tin No</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="tinNoIDTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">National Id No
+                                                </td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="nationalIDNoTd"></span></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width: 25%;font-size:initial;color: black">Passport No</td>
+                                                <td>:</td>
+                                                <td style="width: 70%"><span id="PassportIDNoTd"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <span style="display: none;" id="accountNolabel" hidden></span>
+                                    <span style="display: none;" id="accountTitlelabel" hidden></span>
+                                    <span style="display: none;" id="accountTypelabel" hidden></span>
+                                    <span style="display: none;" id="accountOpenDatelabel" hidden></span>
+                                    <span style="display: none;" id="currenylabel" hidden></span>
+                                    <span style="display: none;" id="balancelabel" hidden></span>
+                                    <span style="display: none;" id="balanceinWordlabel" hidden></span>
+
+
+                                    <div id="updatePanel" style="padding:20px;" class=" col-lg-12" hidden>
+                                    </div>
+
+                                    <!-- <img id="signImg" height="40px" width="220px" style="margin-left: 67%;margin-top: 5px" />
+                                    <hr style="border: 1px solid #000;width: 30%;margin-left: 65%;" id="linesign">
+                                    <p style="margin-left: 72%;font-size:12px;color: black">Authorized Signature</p>
+                                    <div class="row" style="padding:20px"></div>
+                                    <a id="txSpan" class="ft03" style="margin-left: 20%;margin-top: 1800px;font-size:16px;"></a> -->
+                                    <p id="firstPara"
+                                        style="color: #000000; font-size: 20px; align-content: justify;font-family:Arial, Helvetica, sans-serif;">
+                                        This is to certify that <b>Mr./Mrs. </b> <span id="completeName"></span><b> S or
+                                            d/o Mr. </b> ...
+                                        <span id="fatherName"></span> and <b>Mrs. </b>... <span id="motherName"></span>
+                                        Village/ House: ... <span id="houseVillage"></span> P.O: ... <span
+                                            id="postOffice"></span> P.S: ... <span id="policeStation">
+                                        </span> District:... <span id="district"></span> has been maintaining a
+                                        satisfactory <span id="accType"></span> bearing number <span id="accNo"></span>
+                                        with us since <span id="accOpenDate"></span>.
+                                        The present balance is showing in this account of TK <span id="blc"> </span>
+                                        (Taka <span id="inWrd"></span> Only) as on <span id="asOn"></span>. So far we
+                                        know the client is financially sound and solvent.
+                                    </p>
+                                    <br>
+                                    <p id="secondPara"
+                                        style="color: #000000; font-family:Arial, Helvetica, sans-serif;">
+                                        We Wish Him/her every success in life
+                                    </p>
+                                    <img id="signImg" style="margin-top: 5px; " />
+                                    <p style="font-size:20px;color: black; font-family:Arial, Helvetica, sans-serif;;"
+                                        id="thirdPara">Manager Deputy Manager</p>
+                                    <div class="row" style="padding:20px"></div>
+                                    <a id="txSpan" class="ft03"
+                                        style="margin-left: 20%;margin-top: 1800px;font-size:16px;"></a>
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-->
+
+
+                </div>
+            </div>
+            <!--/.row-->
+
+
+
+
+
+
+
+        </div>
+        <!--/.row-->
+    </div>
+    <!--/.main-->
+
+
+    <script src="http://localhost:5000/js/jquery-3.2.1.min.js"></script>
+
+    <script src="http://localhost:5000/js/jquery-ui.js"></script>
+    <script src="http://localhost:5000/js/bootstrap.js"></script>
+    <script src="http://localhost:5000/js/bootstrap.min.js"></script>
+    <script src="http://localhost:5000/js/chart.min.js"></script>
+    <script src="http://localhost:5000/js/chart-data.js"></script>
+    <script src="http://localhost:5000/js/easypiechart.js"></script>
+    <script src="http://localhost:5000/js/easypiechart-data.js"></script>
+    <script src="http://localhost:5000/js/bootstrap-datepicker.js"></script>
+    <script src="http://localhost:5000/js/custom.js"></script>
+    <script src="http://localhost:5000/js/style.js"></script>
+    <!-- <script src="./public.js"></script> -->
+    <script src="http://localhost:5000/js/qrcode.js"></script>
+    <script src="http://localhost:5000/js/html2canvas.js"></script>
+    <script src="http://localhost:5000/js/jspdf.min.js"></script>
+    <script src="http://localhost:5000/js/jspdf.plugin.autotable.js"></script>
+    <script src="http://localhost:5000/js/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="http://localhost:5000/assets/plugins/parsleyjs/parsley.min.js"></script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            var backendURL = 'http://localhost:3000'
+            const dbblURL = 'http://localhost:4000'
+            var transactionHash = ""
+            var bPdf
+            var qrImg
+            var currentdate = new Date()
+            var datetime = "Print date: " + currentdate.getDate() + "/" +
+                (currentdate.getMonth() + 1) + "/" +
+                currentdate.getFullYear() + " @ " +
+                currentdate.getHours() + ":" +
+                currentdate.getMinutes() + ":" +
+                currentdate.getSeconds()
+            document.getElementById("datetimetxt").innerHTML = datetime
+            // //console.log(datetime);
+            var accountdata
+            $("#issuerSign").change(function () {
+                var val = $(this).val()
+                readURL(this)
+            })
+
+            $("#createPdfbtn").hide()
+            $("#CreateCon").hide()
+
+            var AccountTitle
+            var AccountNo
+            var AccountType
+            var AccountOpenDate
+            var Currency
+            var Balance
+            var BalanceInWord
+
+            $("#showAccountbtn").click(function () {
+                var customerNo = document.getElementById('customerNumberTextbox').value
+                customerNo = String(customerNo)
+                if ($("#issuerSign").val().length == 0) {
+
+                    intCustomerNo = 0
+                    alert("Please Provide Manager/ Deputy Manager Signature")
+                }
+
+                $("#updatePanel").empty()
+                $.ajax({
+                    url: `${dbblURL}/certificate/${customerNo}`,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        // console.log(data)
+
+                        $("#completeName").text(data.customerInfo.fullName).css({
+                            fontSize: 20
+                        })
+                        $("#customerIDTd").text(data.customerInfo.customerId)
+
+                        $("#fatherName").text(data.customerInfo.fatherName).css({
+                            fontSize: 20
+                        })
+
+                        // if (data.customerInfo.fatherName != null) {
+                        //     $("#fatherName").text(data.customerInfo.fatherName).css({
+                        //         fontSize: 20
+                        //     })
+
+                        // } else {
+                        //     $("#fatherName").text("N/A").css({
+                        //         fontSize: 20
+                        //     })
+
+                        // }
+                        $("#motherName").text(data.customerInfo.motherName).css({
+                            fontSize: 20
+                        })
+
+                        // $("#spouseNameIDTd").text(data.customerInfo.spouseName)
+
+                        // if (data.customerInfo.spouseName != null) {
+                        //     $("#spouseNameIDTd").text(data.customerInfo.spouseName)
+                        // } else {
+                        //     $("#spouseNameIDTd").text("N/A")
+                        // }
+
+                        // look
+                        // $("#parmanentAddressIDTd").text(data.customerInfo.PermanentAddress)
+                        // $("#presentAddressIDTd").text(data.customerInfo.PresentAddress)
+                        // $("#professionIDTd").text(data.customerInfo.Profession)
+                        // look
+
+                        // Complete Address Fetch and Extract and show in the statement Started
+                        // let address = data.PermanentAddress.split(",")
+
+
+                        $("#houseVillage").text(data.customerInfo.villageOrHouse).css({
+                            fontSize: 20
+                        })
+
+                        $("#postOffice").text(data.customerInfo.postOffice).css({
+                            fontSize: 20
+                        })
+
+                        $("#policeStation").text(data.customerInfo.policeStation).css({
+                            fontSize: 20
+                        })
+
+                        $("#district").text(data.customerInfo.district).css({
+                            fontSize: 20
+                        })
+
+
+
+                        // Complete Address Fetch and Extract and show in the statement Ended
+
+                        $("#accType").html(data.customerInfo.accountType).css({
+                            fontSize: 20
+                        })
+
+                        $("#accNo").html(data.customerInfo.accountNumber).css({
+                            fontSize: 20
+                        })
+
+                        // var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+                        // function convertDate(date_str) {
+                        //     temp_date = date_str.split("-")
+                        //     return months[Number(temp_date[1]) - 1] + " " + temp_date[2] + ", " + " " + temp_date[0]
+                        // }
+
+                        // var openDate = convertDate(data.AccountDetails[0].AccountOpendate.substr(0, 10))
+
+                        $("#accOpenDate").html(data.customerInfo.AccountOpenDate).css({
+                            fontSize: 20
+                        })
+
+                        $("#blc").html(data.customerInfo.balance).css({
+                            fontSize: 20
+                        })
+
+                        $("#inWrd").html(data.customerInfo.balanceInWord).css({
+                            fontSize: 20
+                        })
+
+                        // As on Code started
+
+                        var d = new Date()
+                        var randomNumber = Math.floor(Math.random() * 3) + 1
+                        d.setDate(d.getDate() - randomNumber)
+
+                        var asOnDate = d.toLocaleString()
+                        asOnDate = asOnDate.split(",")
+                        // console.log(asOnDate[0])
+                        var splittedAsOnDate = asOnDate[0].split("/")
+                        var mnth = parseInt(splittedAsOnDate[0])
+                        var day = parseInt(splittedAsOnDate[1])
+
+                        if (day < 10) {
+                            toString(day)
+                            day = '0' + day
+                        }
+
+                        switch (mnth) {
+                            case 1:
+                                mnth = "January"
+                                break
+                            case 2:
+                                mnth = "February"
+                                break
+                            case 3:
+                                mnth = "March"
+                                break
+                            case 4:
+                                mnth = "April"
+                                break
+                            case 5:
+                                mnth = "May"
+                                break
+                            case 6:
+                                mnth = "June"
+                                break
+                            case 7:
+                                mnth = "July"
+                                break
+                            case 8:
+                                mnth = "August"
+                                break
+                            case 9:
+                                mnth = "September"
+                                break
+                            case 10:
+                                mnth = "October"
+                                break
+                            case 11:
+                                mnth = "November"
+                                break
+                            case 12:
+                                mnth = "December"
+                                break
+
+                        }
+
+                        var completeAsOnDate = mnth + " " + day + ", " + splittedAsOnDate[2]
+
+                        $("#asOn").html(completeAsOnDate).css({
+                            fontSize: 20
+                        })
+
+                        //As on Code ended
+
+
+                        // var date = data.DateOfBirth
+                        // var res = date.slice(0, 10)
+
+                        // //console.log(res);
+                        // $("#dobIDTd").text(data.customerInfo.dateOfBirth)
+
+                        // $("#phoneIDTd").text(data.customerInfo.phoneNumber)
+                        $("#emailIDTd").text(data.customerInfo.emailAddress)
+
+                        // if (data.customerInfo.emailAddress != null) {
+                        //     $("#emailIDTd").text(data.customerInfo.emailAddress)
+                        // } else {
+                        //     $("#emailIDTd").text(data.customerInfo.emailAddress)
+                        // }
+                        // $("#tinNoIDTd").text(data.customerInfo.tinNumber)
+
+                        // if (data.customerInfo.tinNumber != null) {
+                        //     $("#tinNoIDTd").text(data.customerInfo.tinNumber)
+                        // } else {
+                        //     $("#tinNoIDTd").text(data.customerInfo.tinNumber)
+                        // }
+                        // $("#nationalIDNoTd").text(data.customerInfo.nationalIdNumber)
+                        // $("#PassportIDNoTd").text(data.customerInfo.passportNumber)
+
+                        // if (data.customerInfo.passportNumber != null) {
+                        //     $("#PassportIDNoTd").text(data.customerInfo.passportNumber)
+                        // } else {
+                        //     $("#PassportIDNoTd").text(data.customerInfo.passportNumber)
+                        // }
+
+
+                        // var accountDetails = data.customerInfo
+                        // //console.log(accountDetails);
+
+                        var accountInfo = []
+
+                        // for (var v in accountDetails) {
+                        //     accountInfo.push(accountDetails[0])
+
+                        // }
+                        var $table
+                        var $header
+                        var $body
+
+                        // for (var a = 0; a < accountInfo.length; a++) {
+                        // var value = accountInfo[a]
+                        // //console.log(value);
+                        document.getElementById('accountNolabel').innerHTML = data.customerInfo.accountNumber
+                        document.getElementById('accountTitlelabel').innerHTML = data.customerInfo.accountTitle
+                        document.getElementById('accountTypelabel').innerHTML = data.customerInfo.accountType
+                        document.getElementById('accountOpenDatelabel').innerHTML = data.customerInfo.accountOpenDate
+                        document.getElementById('currenylabel').innerHTML = data.customerInfo.currency
+                        document.getElementById('balancelabel').innerHTML = data.customerInfo.balance
+                        document.getElementById('balanceinWordlabel').innerHTML = data.customerInfo.balanceInWord
+
+
+
+                        var $table = $('<table/>').addClass('table table-responsive tableFont table-bordered ')
+                        var $header = $('<thead/>').html(
+                            '<tr><th>A/C Title</th><th>A/C No.</th><th>A/C Type</th><th>A/C Open Date</th><th>Currency</th><th>Balance</th><th>Balance In Word</th></tr>'
+                        )
+                        var $body = $('<tbody/>').html('<tr><td>' + data.customerInfo.accountTitle + '</td><td>' + data.customerInfo.accountNumber +
+                            '</td><td>' + data.customerInfo.accountType + '</td><td>' + data.customerInfo.accountOpenDate.substr(0, 10) + '</td><td>' + data.customerInfo.currency +
+                            '</td><td>' + data.customerInfo.balance + '</td><td>' + data.customerInfo.balanceInWord + '</td><tr>')
+                        $table.append($header)
+                        $table.append($body)
+
+
+                        //$('#updatePanel').html($table);
+                        AccountTitle = data.customerInfo.accountTitle
+                        AccountNo = data.customerInfo.accountNumber
+                        AccountType = data.customerInfo.accountType
+                        AccountOpenDate = data.customerInfo.accountOpenDate.substr(0, 10)
+                        Currency = data.customerInfo.currency
+                        Balance = data.customerInfo.balance
+                        BalanceInWord = data.customerInfo.balanceInWord
+
+
+                        //console.log(AccountTitle);
+                        //console.log(AccountNo);
+                        //console.log(AccountType);
+                        //console.log(AccountOpenDate);
+                        //console.log(Currency);
+                        //console.log(Balance);
+                        //console.log(BalanceInWord);
+                        ////console.log(accountdata);
+
+
+                        $table.appendTo('#updatePanel')
+                        /*	//console.log(document.getElementById('accountNolabel').innerHTML)
+                            //console.log(document.getElementById('accountTitlelabel').innerHTML)
+                            //console.log(document.getElementById('accountTypelabel').innerHTML)
+                            //console.log(document.getElementById('accountOpenDatelabel').innerHTML)
+                            //console.log(document.getElementById('currenylabel').innerHTML)
+                            //console.log(document.getElementById('balancelabel').innerHTML)
+                            //console.log(document.getElementById('balanceinWordlabel').innerHTML)*/
+                        // }
+                        $("#showAccountbtn").hide()
+                        $("#CreateCon").show()
+                    },
+                    error: function () {
+                        alert('Error!')
+                        $("#showAccountbtn").Show()
+                        $("#CreateCon").hide()
+                        $("#createPdfbtn").hide()
+                    }
+
+                })
+                //document.getElementById('CreatCon').style.visibility='visible';
+                //document.getElementById('createPdfbtn').style.visibility = 'visible';
+                //document.getElementById('showAccountbtn').style.visibility = 'hidden';
+
+            })
+
+
+            $('#CreateCon').click(function (e) {
+                var preventDefaults = e.preventDefault()
+                if (!$('form').parsley().validate()) return false
+                // App.setPersonInfo()
+
+                const dataToPublish = {
+                    id: "123",
+                    customerId: document.getElementById('customerIDTd').innerHTML,
+                    emailAddress: document.getElementById('emailIDTd').innerHTML,
+                    fullName: document.getElementById('completeName').innerHTML,
+                    fatherName: document.getElementById('fatherName').innerHTML,
+                    motherName: document.getElementById('motherName').innerHTML,
+                    villageOrHouse: document.getElementById('houseVillage').innerHTML,
+                    postOffice: document.getElementById('postOffice').innerHTML,
+                    policeStation: document.getElementById('policeStation').innerHTML,
+                    district: document.getElementById('district').innerHTML,
+                    accountNumber: document.getElementById('accNo').innerHTML,
+                    accountTitle: document.getElementById('accountTitlelabel').innerHTML,
+                    accountType: document.getElementById('accountTypelabel').innerHTML,
+                    accountOpenDate: document.getElementById('accountOpenDatelabel').innerHTML,
+                    currency: document.getElementById('currenylabel').innerHTML,
+                    balance: document.getElementById('balancelabel').innerHTML,
+                    balanceInWord: document.getElementById('balanceinWordlabel').innerHTML
+
+                }
+
+                $.ajax({
+                    url: `${backendURL}/v1/dbbl/publish`,
+                    data: JSON.stringify(dataToPublish),
+                    dataType: "json",
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        transactionHash = response.txHash.transaction_hash
+                        console.log(response.txHash.transaction_hash)
+                    },
+                    error: function () {
+                        $("#regModal").modal("hide")
+                        $("#MailModalError").modal("show")
+                    }
+                })
+                $("#txSpan").hide()
+                $("#txhashModal").modal("show")
+                $("#verifyIconSuccess").hide()
+                //$("#successMsg").hide();
+                $("#verifyIconFail").hide()
+                $("#one").hide()
+                $("#two").hide()
+                $("#three").hide()
+                $("#four").hide()
+                $("#five").hide()
+                $("#six").hide()
+                $("#iconOne").hide()
+                $("#iconTwo").hide()
+                $("#iconThree").hide()
+                $("#iconFour").hide()
+                $("#iconFive").hide()
+                $("#iconSix").hide()
+                $("#verifyIconFail").hide()
+                $("#one").fadeIn(4837, function () {
+                    $("#iconOne").fadeIn(800).css("color", "green")
+                    $("#progressBar").prop("style", "width: 10%")
+                    $("#two").fadeIn(5252, function () {
+                        $("#iconTwo").fadeIn(450).css("color", "green")
+                        $("#progressBar").prop("style", "width: 20%")
+                        $("#three").fadeIn(6546, function () {
+                            $("#iconThree").fadeIn(523).css("color",
+                                "green")
+                            $("#progressBar").prop("style", "width: 50%")
+                            $("#four").fadeIn(7090, function () {
+                                $("#iconFour").fadeIn(512).css(
+                                    "color", "green")
+                                $("#progressBar").prop("style",
+                                    "width: 80%")
+                                $("#five").fadeIn(7458,
+                                    function () {
+                                        $("#iconFive").fadeIn(
+                                            420).css(
+                                                "color",
+                                                "green")
+                                        $("#progressBar").prop(
+                                            "style",
+                                            "width: 99%")
+                                        $("#six").fadeIn(48000,
+                                            function () {
+                                                $(
+                                                    "#iconSix"
+                                                ).fadeIn(
+                                                    10)
+                                                    .css(
+                                                        "color",
+                                                        "green"
+                                                    )
+                                                $(
+                                                    "#pBarDiv"
+                                                ).hide()
+                                                //$("#successMsg").show();
+                                                $(
+                                                    "#verifyIconSuccess"
+                                                ).fadeIn()
+                                                $(
+                                                    "#txhashModal"
+                                                ).modal(
+                                                    "hide"
+                                                )
+                                                $("#txSpan")
+                                                    .show()
+                                            })
+                                    })
+                            })
+                        })
+                    })
+                })
+
+                $("#createPdfbtn").show()
+                $("#CreateCon").hide()
+                $("showAccountbtn").hide()
+
+                document.getElementById('createPdfbtn').style.pointerEvents = 'none'
+                setTimeout(function () {
+                    qrCode()
+
+                }, 75000)
+                document.getElementById('createPdfbtn').style.pointerEvents = 'auto'
+
+            })
+
+            $("#pdfBtn").click(function () {
+                var emailTo = $("#EmailTextbox").val()
+                var reqData = {
+                    To: emailTo,
+                    Attachment: bPdf,
+                }
+                $.ajax({
+                    url: "http://115.127.24.181:57838/api/PdfMail/PostEmailWithPdf",
+                    data: JSON.stringify(reqData),
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        $("#regModal").modal("hide")
+                        //progress.done();
+                        ////console.log(response);
+                        $("#MailModal").modal("show")
+                    },
+                    error: function () {
+                        $("#regModal").modal("hide")
+                        //progress.done();
+                        $("#MailModalError").modal("show")
+                    }
+                })
+            })
+
+            $("#createPdfbtn").click(function () {
+
+                //console.log(AccountTitle);
+                //console.log(AccountNo);
+                //console.log(AccountType);
+                //console.log(AccountOpenDate);
+                //console.log(Currency);
+                //console.log(Balance);
+                //console.log(BalanceInWord);
+
+                var TxhashTable = new Object()
+                TxhashTable.CustomerNo = (document.getElementById('customerNumberTextbox').value)
+                TxhashTable.TxHash = document.getElementById("txSpan").innerHTML
+                $.ajax({
+                    url: 'http://115.127.24.181:57838/api/TxhashTables/PostTxhashTable/',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: TxhashTable,
+                    success: function (data, textStatus, xhr) {
+                        //console.log(data);
+                        $("#regModal").modal("show")
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        //console.log('Error in Operation');
+                    }
+                })
+
+                qrImg = $('#qrImg').prop('src')
+
+
+                demoPDF()
+
+            })
+
+            // Header Current Date Code Start
+            const date = new Date() // 2009-11-10
+            const month = date.toLocaleString('default', {
+                month: 'long'
+            })
+            var newDate = new Date()
+            newDate = newDate.toString().substring(7, 15)
+            var dat = month + newDate
+            console.log(dat)
+            dat = dat.replace(" 2022", ", 2022")
+
+
+            $("#todayDate").html(dat)
+
+
+
+
+            function qrCode() {
+                var tx = document.getElementById("txSpan").innerHTML
+
+                var baddress = tx
+
+                var url = "http://localhost:5000/verify.html?txhash=" + transactionHash
+                var qrcode = new QRCode(document.getElementById("qrImage"), {
+                    text: url,
+                    width: 120,
+                    height: 120,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                })
+            }
+
+            function readURL(input) {
+                $('#signImg').show()
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader()
+
+                    reader.onload = function (e) {
+                        $('#signImg').attr('src', e.target.result).css({
+
+                            height: "40px",
+                            width: "220px"
+                        })
+                        signImage = e.target.result
+                    }
+
+                    reader.readAsDataURL(input.files[0])
+                }
+            }
+
+            function demoPDF() {
+                html2canvas(document.getElementById("pdfDiv"), {
+                    onrendered: function (canvas) {
+                        var doc = new jsPDF('p', 'pt', 'letter')
+                        var img = 'data:image/png;base64,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'
+                        doc.addImage(img, 'PNG', 170, 40, 250, 25, {
+                            align: 'center'
+                        })
+                        doc.setFont("times")
+                        doc.setFontSize(8)
+                        doc.setTextColor(0, 0, 0)
+                        // doc.text(360, 80, document.getElementById("datetimetxt").innerText, {
+                        //     align: 'center'
+                        // });
+
+
+                        // doc.setFont("times");
+                        // doc.setFontSize(8);
+                        // doc.setTextColor(0, 0, 0);
+                        // doc.text(80, 100, document.getElementById("i").innerText, {
+                        //     align: 'center'
+                        // });
+
+                        // doc.setFont("times");
+                        // doc.setFontSize(8);
+                        // doc.setTextColor(0, 0, 0);
+                        // doc.text(80, 110, document.getElementById("j").innerText, {
+                        //     align: 'center'
+                        // });
+
+                        // doc.setFont("times");
+                        // doc.setFontSize(8);
+                        // doc.setTextColor(0, 0, 0);
+                        // doc.text(80, 120, document.getElementById("k").innerText, {
+                        //     align: 'center'
+                        // });
+
+                        doc.setFont("times")
+                        doc.setFontSize(12)
+                        doc.setTextColor(0, 0, 0)
+                        doc.text(40, 125, document.getElementById("localOfficeCode").innerText, {
+                            align: 'left',
+                        })
+
+                        doc.setFont("times")
+                        doc.setFontSize(12)
+                        doc.setTextColor(0, 0, 0)
+                        doc.text(40, 150, document.getElementById("todayDate").innerText, {
+                            align: 'left',
+                        })
+
+                        var img2 = qrImg
+                        doc.addImage(img2, 'PNG', 510, 110, 70, 70)
+
+
+                        doc.setFont("times")
+                        doc.setFontSize(14)
+                        doc.setTextColor(0, 0, 0)
+                        doc.setFontType("bold")
+                        doc.text(220, 260, document.getElementById("accountBalanceStatment").innerText, {
+                            align: 'center'
+                        })
+                        doc.setLineWidth(1.5)
+                        doc.line(220, 265, 380, 265)
+
+
+
+                        var lMargin = 40 //left margin in mm
+                        var rMargin = 40 //right margin in mm
+                        var pdfInMM = 720
+                        var paragraph = document.getElementById("firstPara").innerText
+                        var lines = doc.splitTextToSize(paragraph, (pdfInMM - lMargin - rMargin), {
+                            orientation: "p",
+                            lineHeight: 20
+                        })
+                        doc.setFont("times")
+                        doc.setFontSize(12)
+                        doc.setFontStyle('normal')
+                        doc.setTextColor(0, 0, 0)
+                        doc.text(lMargin, 310, lines)
+
+
+
+
+                        doc.setFont("times")
+                        doc.setFontSize(12)
+                        doc.setTextColor(0, 0, 0)
+                        doc.setFontType("normal")
+                        doc.text(40, 480, document.getElementById("secondPara").innerText, {
+                            align: 'center'
+                        })
+
+                        var columns = ["", ""]
+
+
+                        var data = [
+                            ["Customer NO.", document.getElementById('customerIDTd').innerHTML],
+                            ["Full Name.", document.getElementById('fullNameIDTd').innerHTML],
+                            ["Father Name.", document.getElementById('fatherNameIDTd').innerHTML],
+                            ["Mother Name.", document.getElementById('motherNameIDTd').innerHTML],
+                            ["Spouse Name", document.getElementById('spouseNameIDTd').innerHTML],
+                            ["Permanent Address", document.getElementById('parmanentAddressIDTd').innerHTML],
+                            ["Present Address", document.getElementById('presentAddressIDTd').innerHTML],
+                            ["Profession", document.getElementById('professionIDTd').innerHTML],
+                            ["Date of Birth", document.getElementById('dobIDTd').innerHTML],
+                            ["Phone", document.getElementById('phoneIDTd').innerHTML],
+                            ["Email", document.getElementById('emailIDTd').innerHTML],
+                            ["TIN No", document.getElementById('tinNoIDTd').innerHTML],
+                            ["National ID No.", document.getElementById('nationalIDNoTd').innerHTML],
+                            ["Passport No.", document.getElementById('PassportIDNoTd').innerHTML],
+
+
+
+                        ]
+                        // doc.autoTable(columns, data, {
+                        //     showHeader: 'never',
+                        //     styles: {
+                        //         fillColor: [255],
+                        //         lineColor: [44, 62, 80],
+                        //         lineWidth: 0.75
+                        //     },
+                        //     columnStyles: {
+                        //         id: {
+                        //             fillColor: 255
+                        //         }
+                        //     },
+                        //     margin: {
+                        //         top: 215
+                        //     },
+
+                        // });
+
+                        //Pdf Account table
+                        var columns1 = ["A/C Title", "A/C No.", "A/C Type", "A/C Opendate", "Currency", "Balance", "BalanceInWord"]
+                        var data = [
+                            [AccountTitle, AccountNo, AccountType, AccountOpenDate, Currency, Balance, BalanceInWord]
+                        ]
+                        // doc.autoTable(columns1, data, {
+                        //     styles: {
+                        //         fontSize: 8,
+                        //         columnWidth: 'auto'
+                        //     },
+
+                        //     margin: {
+                        //         top: 560
+                        //     }
+                        // });
+
+                        var elementHandler = {
+                            '#ignoreElement': function (element, renderer) {
+                                return true
+                            },
+
+                        }
+
+                        doc.setFont("times")
+                        doc.setFontSize(10)
+                        doc.setTextColor(51, 85, 255)
+                        doc.setTextColor(0, 0, 0)
+
+                        var tx = document.getElementById("txSpan").innerHTML
+                        var addr = "https://ropsten.etherscan.io/tx/" + tx
+
+                        var textX = 170
+                        var textY = 695
+                        doc.textWithLink(tx, textX, textY, {
+                            url: addr
+                        })
+
+
+                        doc.setFontSize(30)
+                        //doc.text(15, 190, document.getElementById("j").innerText);
+                        doc.setFontSize(19)
+                        doc.setTextColor(0, 0, 0)
+                        var hf = 'http://115.127.24.181:8081/verify.html'
+                        var finalVerifyUrl = hf + "?txhash=" + tx
+
+                        var textX = 270,
+                            textY = 630
+                        doc.textWithLink("Verify Here!", textX, textY, {
+                            url: finalVerifyUrl
+                        })
+
+
+                        var signimg = signImage
+                        ////console.log(signImage2);
+                        doc.addImage(signimg, 'PNG', 40, 510, 110, 60) //(left,top,wid,hig)
+
+
+                        // doc.setLineWidth(1.5)
+                        // doc.setFontType("bold");
+
+                        // doc.line(420, 720, 550, 720) //(left,top-left,wid-right,top-right)
+
+                        doc.setFont("times")
+                        doc.setFontSize(12)
+                        doc.setTextColor(0, 0, 0)
+                        doc.text(40, 590, 'Manager/ Deputy Manager', {
+                            align: 'center'
+                        })
+
+
+                        var binary = doc.output()
+                        doc.save('test.pdf')
+                        bPdf = btoa(binary)
+                        //console.log(bPdf);
+
+
+                        /*var specialElementHandlers = {
+                                     '#editor': function (element, renderer) {
+                                   return true;
+                                     }
+                            };
+
+                            doc.fromHTML($('#infoTable').html(), 110, 210, {
+                                'width': 200,
+                                'elementHandlers': specialElementHandlers
+                            });*/
+
+
+
+                    }
+                })
+            }
+
+
+
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leadschain</title>
+    <link href="../app/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../app/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../app/css/datepicker3.css" rel="stylesheet">
+    <link href="../app/css/styles.css" rel="stylesheet">
+    <link href="../app/forntend/css/style.css" rel="stylesheet">
+    <link href="../app/css/jquery-ui.css" rel="stylesheet">
+
+    <!--Custom Font-->
+    <link rel="stylesheet" type="text/css" href="../app/forntend/css/mobirise.css" />
+    <link rel="stylesheet" href="../app/forntend/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="../app/forntend/css/materialdesignicons.min.css" />
+    <style>
+        .tableFont {
+            font-size: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span
+                        class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span></button>
+                <a class="navbar-brand" href="#"><span>LEADS Chain</span>chain</a>
+
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!--/.sidebar-->
+
+    <section class="section" id="contact">
+        <div class="container">
+            <br />
+            <iframe id="pdfView" src="" width="1200px" height="800px"></iframe>
+
+        </div>
+    </section>
+
+    <!--<script src="js/jquery-1.11.1.min.js"></script>-->
+    <script src="../app/js/jquery-3.2.1.min.js"></script>
+    <script src="../app/js/jquery-ui.js"></script>
+
+    <script src="../app/js/bootstrap.min.js"></script>
+    <script src="../app/js/chart.min.js"></script>
+    <script src="../app/js/chart-data.js"></script>
+    <script src="../app/js/easypiechart.js"></script>
+    <script src="../app/js/easypiechart-data.js"></script>
+    <script src="../app/js/bootstrap-datepicker.js"></script>
+    <script src="../app/js/custom.js"></script>
+    <script src="../app/js/style.js"></script>
+    <script src="./app.js"></script>
+    <script src="../app/js/qrcode.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var pdfLink;
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('?'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : sParameterName[1];
+                    }
+                }
+            };
+
+            var email = getUrlParameter('email');
+            console.log(email);
+            /*$(window).on('load', function() {
+                $.ajax({
+                    url: 'http://115.127.24.181:57838/api/FileInfoes/GetFileInfo?email=' + email,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        for (var r in response) {
+                            console.log(response[r].Data);
+                            pdfLink = response[r].Data;
+                        }
+                        var fullPdfLink = "data:application/pdf;base64, " + response.Data;
+                        console.log(fullPdfLink);
+                        $("#pdfView").attr('src', fullPdfLink);
+                    },
+                    error: function(response) {
+                        // console.log(response);
+                        alert("There is Something Wrong");
+                    }
+                });
+            });*/
+
+            $(window).ready(function() {
+                var pdfLink;
+                $.ajax({
+                    url: 'http://115.127.24.181:57838/api/FileInfoes/GetFileInfo?email=' + email,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        for (var r in response) {
+                            console.log(response[r].Data);
+                            pdfLink = response[r].Data;
+                        }
+                        var fullPdfLink = "data:application/pdf;base64, " + pdfLink;
+                        console.log(fullPdfLink);
+                        $("#pdfView").attr('src', fullPdfLink);
+                    },
+                    error: function(response) {
+                        // console.log(response);
+                        alert("There is Something Wrong");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+/*
+ Template Name: Admiria - Bootstrap 4 Admin Dashboard
+ Author: Themesbrand
+ File: Range Slider  Init
+ */
+
+
+!function(e){"use strict";var i=function(){};i.prototype.init=function(){e("#range_01").ionRangeSlider(),e("#range_02").ionRangeSlider({min:100,max:1e3,from:550}),e("#range_03").ionRangeSlider({type:"double",grid:!0,min:0,max:1e3,from:200,to:800,prefix:"$"}),e("#range_04").ionRangeSlider({type:"double",grid:!0,min:-1e3,max:1e3,from:-500,to:500}),e("#range_05").ionRangeSlider({type:"double",grid:!0,min:-1e3,max:1e3,from:-500,to:500,step:250}),e("#range_06").ionRangeSlider({grid:!0,from:3,values:["January","February","March","April","May","June","July","August","September","October","November","December"]}),e("#range_07").ionRangeSlider({grid:!0,min:1e3,max:1e6,from:2e5,step:1e3,prettify_enabled:!0}),e("#range_08").ionRangeSlider({min:100,max:1e3,from:550,disable:!0}),e("#range_09").ionRangeSlider({grid:!0,min:18,max:70,from:30,prefix:"Age ",max_postfix:"+"}),e("#range_10").ionRangeSlider({type:"double",min:100,max:200,from:145,to:155,prefix:"Weight: ",postfix:" million pounds",decorate_both:!0}),e("#range_11").ionRangeSlider({type:"single",grid:!0,min:-90,max:90,from:0,postfix:"Â°"}),e("#range_12").ionRangeSlider({type:"double",min:1e3,max:2e3,from:1200,to:1800,hide_min_max:!0,hide_from_to:!0,grid:!0})},e.RangeSlider=new i,e.RangeSlider.Constructor=i}(window.jQuery),function(e){"use strict";e.RangeSlider.init()}(window.jQuery);

@@ -1,0 +1,21 @@
+truffle compile --all
+
+# To test if test cases exist
+# truffle test
+
+truffle migrate -f 1 --to 1 --network besu
+
+# migrattion command if the above one does not work
+truffle migrate --reset --network besu
+
+truffle console --network besu
+
+contract = await Dbbl.deployed()
+
+
+# Mnemonic
+joy heart fall purity human canal give hungry stable laptop proud around
+
+
+
+contract address: 0x00B295C881Ee9f48B0Ab0553a07EF5CdDf461Db5

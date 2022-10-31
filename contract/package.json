@@ -1,0 +1,17 @@
+{
+  "name": "e_certificate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "Ridoan Khan Anik",
+  "license": "MIT",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.5.0",
+    "mocha": "^9.1.1",
+    "web3": "^1.5.2"
+  }
+}
