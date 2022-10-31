@@ -1212,7 +1212,8 @@
                         doc.setFontSize(19)
                         doc.setTextColor(0, 0, 0)
                         var hf = 'http://115.127.24.188:5000/verify.html'
-                        var finalVerifyUrl = hf + "?txhash=" + tx
+                        // console.log("tx: ", tx) 
+                        var finalVerifyUrl = hf + `?txhash=${tx}`
 
                         var textX = 270,
                             textY = 630
