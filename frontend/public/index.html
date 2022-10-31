@@ -1197,23 +1197,23 @@
                         doc.setTextColor(51, 85, 255)
                         doc.setTextColor(0, 0, 0)
 
-                        // var tx = document.getElementById("txSpan").innerHTML
                         var addr = "https://ropsten.etherscan.io/tx/" + tx
-
+                        
                         var textX = 170
                         var textY = 695
                         doc.textWithLink(tx, textX, textY, {
                             url: addr
                         })
-
-
+                        
+                        
                         doc.setFontSize(30)
                         //doc.text(15, 190, document.getElementById("j").innerText);
                         doc.setFontSize(19)
                         doc.setTextColor(0, 0, 0)
                         var hf = 'http://115.127.24.188:5000/verify.html'
-                        console.log("tx: ", tx) 
-                        var finalVerifyUrl = hf + `?txhash=${tx}`
+                        // var tx = document.getElementById("txSpan").innerHTML
+                        // console.log("tx: ", tx) 
+                        var finalVerifyUrl = hf + `?txhash=${transactionHash}`
 
                         var textX = 270,
                             textY = 630
