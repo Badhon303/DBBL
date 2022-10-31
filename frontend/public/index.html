@@ -480,6 +480,7 @@
             const dbblURL = 'http://115.127.24.188:4000'
             var transactionHash = ""
             var bPdf
+            var tx = document.getElementById("txSpan").innerHTML
             var qrImg
             var currentdate = new Date()
             var datetime = "Print date: " + currentdate.getDate() + "/" +
@@ -1003,7 +1004,7 @@
 
 
             function qrCode() {
-                var tx = document.getElementById("txSpan").innerHTML
+                
 
                 var baddress = tx
 
@@ -1196,7 +1197,7 @@
                         doc.setTextColor(51, 85, 255)
                         doc.setTextColor(0, 0, 0)
 
-                        var tx = document.getElementById("txSpan").innerHTML
+                        // var tx = document.getElementById("txSpan").innerHTML
                         var addr = "https://ropsten.etherscan.io/tx/" + tx
 
                         var textX = 170
